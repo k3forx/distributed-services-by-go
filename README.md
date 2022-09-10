@@ -42,3 +42,18 @@ protobufライブラリがエンコードとデコードを行ってくれるの
 ### 6. パフォーマンス
 
 データ量が小さく、JSONに比べて最大6倍の速さでシリアライズできる
+
+## Memo
+
+### Protocol Bufferによる構造化データ
+
+- Goのプロジェクトの規約では、protobufをapiディレクトリに置くことになっている
+- protobufでは左にフィールドの型、その名前、フィールドIDを書く
+- protobufをコンパイルすると、protobufのメッセージがGoの構造体になり、protobufのバイナリワイヤ形式にマーシャルするための構造体のメソッドとフィールドのゲッターが追加される
+
+
+### コンパイル
+```bash
+go get google.golang.org/protobuf/...@v1.28.0
+protoc api/v1/*.proto --go_out=. --go_opt=paths=source_relative --proto_path=.
+```
