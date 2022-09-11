@@ -54,4 +54,8 @@ func newSegment(dir string, baseOffset uint64, c Config) (*segment, error) {
 	return s, nil
 }
 
-func (s *segment) Append(record *api.Record)
+func (s *segment) Append(record *api.Record) (uint64, error) {
+	cur := s.nextOffset
+	record.Offset = cur
+	return 0, nil
+}
